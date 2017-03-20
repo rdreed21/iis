@@ -1,21 +1,24 @@
 ---
 driver:
-  name: vagrant
+  name: azurerm
 
-provisioner:
-  name: chef_zero
-  # You may wish to disable always updating cookbooks in CI or other testing environments.
-  # For example:
-  #   always_update_cookbooks: <%= !ENV['CI'] %>
-  always_update_cookbooks: true
+driver_config:
+  subscription_id: '09f2ee05-2cb0-4996-a24e-b4d3083b0cbd'
+  location: 'southcentralus'
+  machine_size: 'Standard_D1'
 
 verifier:
   name: inspec
 
-platforms:
-  - name: ubuntu-16.04
-  - name: centos-7.2
+provisioner:
+  name: chef_zero
 
+platforms:
+  - name: windows2012-r2
+    driver_config:
+      image_urn: MicrosoftWindowsServer:WindowsServer:2012-R2-Datacenter:latest    
+    transport:
+      name: winrm
 suites:
   - name: default
     run_list:
