@@ -13,6 +13,9 @@ unless os.windows?
 end
 
 describe port(80) do
-  it { should_not be_listening }
-  skip 'This is an example test, replace with your own test.'
+it { should be_listening }
+end
+
+describe command('(Invoke-WebRequest -UseBasicParsing localhost).Content') do
+  its(:stdout) { should match /Hello, world!/ }
 end

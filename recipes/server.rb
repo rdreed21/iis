@@ -10,9 +10,9 @@ service 'w3svc' do
 end
 
 file 'c:\inetpub\wwwroot\Default.htm' do
-  content '<html>
-  <body>
-    <h1>hello world</h1>
-  </body>
-</html>'
+  content "<h1>Hello, world!</h1>
+<h2>ipaddress: #{node['ipaddress']}</h2>
+<h2>hostname: #{node['hostname']}</h2>
+<h2>total memory: #{node['memory']['total']}</h2>
+<h2>CPU Mhz: #{node['cpu']['0']['mhz']}</h2>"
 end
